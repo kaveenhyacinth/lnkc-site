@@ -1,0 +1,26 @@
+{
+  "default": {
+    "name": "orangered",
+    "colors": {
+      "primary": "#F26E50",
+      "body": "#FFFFFF",
+      "logo": "#172E73",
+      "link": "#172E73",
+      "text": "#252525",
+      "light": "#888888",
+      "button": {
+        "text": "#252525",
+        "background": "#F26E50"
+      },
+      "infobox": {
+        "background": "#F26E50",
+        "alpha": "#F26E50BF",
+        "opacity": 0.75
+      }
+    },
+    "fonts": {
+      "Montserrat": "Montserrat",
+      "OpenSans": "Open Sans"
+    }
+  }
+}
