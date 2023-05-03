@@ -46,5 +46,10 @@ export const GlobalStyles = createGlobalStyle`
       background-color: ${({ theme }) => (theme as ITheme).colors.button.text};
       color: ${({ theme }) => (theme as ITheme).colors.button.background};
     }
+
+    &:disabled {
+      background-color: ${({ theme }) =>
+        (theme as ITheme).colors.button.background};
+  }
   }
 `;
