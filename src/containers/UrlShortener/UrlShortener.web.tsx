@@ -1,10 +1,7 @@
+import { UrlShortenerProps } from ".";
 import { ComboTextField } from "../../components/ComboTextField";
 import { ResultBox } from "../../components/ResultBox";
 import { Section } from "../../global/styles";
-import {
-  CreateLinkPayloadContract,
-  useCreateLinkMutation,
-} from "../../services/link.service";
 import {
   InfoContainer,
   InfoContainerWrapper,
@@ -12,16 +9,14 @@ import {
   ResultContainer,
 } from "./styles";
 
-export const UrlShortnerForWeb = () => {
-  const [createPost, { data: linkData, isLoading }] = useCreateLinkMutation();
-
-  const handleOnSubmit = (payload: CreateLinkPayloadContract) => {
-    createPost(payload);
-  };
-
+export const UrlShortnerForWeb = ({
+  linkData,
+  isLoading,
+  onSubmit,
+}: UrlShortenerProps) => {
   return (
     <Section noMargin>
-      <ComboTextField onSubmit={handleOnSubmit} isLoading={isLoading} />
+      <ComboTextField onSubmit={onSubmit} isLoading={isLoading} />
       {linkData?.url && linkData?.shortCode && (
         <InfoContainerWrapper paddingTop={24}>
           <InfoContainer>

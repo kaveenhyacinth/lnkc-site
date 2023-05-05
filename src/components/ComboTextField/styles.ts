@@ -19,13 +19,13 @@ export const TextInput = styled.input`
   font-family: ${({ theme }) => (theme as ITheme).fonts.OpenSans};
 
   border-radius: 8px 0 0 8px;
-  border: 1px solid ${({ theme }) => (theme as ITheme).colors.button.text};
+  border: 1px solid ${({ theme }) => (theme as ITheme).colors.text};
   border-right-width: 0;
 `;
 
 export const InlineButon = styled.button`
   margin: 0;
   height: 50px;
-  border: 1px solid ${({ theme }) => (theme as ITheme).colors.button.text};
+  border: 1px solid ${({ theme }) => (theme as ITheme).colors.text};
   border-radius: 0 8px 8px 0;
 `;

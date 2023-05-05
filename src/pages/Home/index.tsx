@@ -1,9 +1,12 @@
+import { useMemo } from "react";
 import { ReactComponent as HeroImage } from "../../assets/images/hero-image.svg";
 import { Copyright } from "../../components/Copyright";
 import { Logo } from "../../components/Logo";
 import { UrlShortener } from "../../containers/UrlShortener";
 import { Section } from "../../global/styles";
+import { useDevice } from "../../hooks/useDevice";
 import { HeroDesc, HeroTitle, HomeContainer, LogoContainer } from "./styles";
+import { DEVICE_TYPE, device } from "../../helpers/device";
 
 const HERO_SCHEMA = {
   title: `Shorter links, with`,
@@ -12,13 +15,20 @@ const HERO_SCHEMA = {
 };
 
 const Home = () => {
+  const { deviceType } = useDevice();
+
+  const isSmall = useMemo(
+    () => [DEVICE_TYPE.TABLET, DEVICE_TYPE.MOBILE].includes(deviceType),
+    [deviceType]
+  );
+
   return (
     <HomeContainer>
       <LogoContainer>
         <Logo />
       </LogoContainer>
       <Section>
-        <HeroImage width={250} height={200} />
+        <HeroImage width={isSmall ? 150 : 250} height={isSmall ? 120 : 200} />
       </Section>
       <Section noMargin>
         <HeroTitle>

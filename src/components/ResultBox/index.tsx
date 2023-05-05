@@ -1,18 +1,24 @@
 import { useCallback, useMemo, useState } from "react";
-import {
-  CopyButton,
-  LongUrlText,
-  ResultBoxContainer,
-  ShortUrlText,
-} from "./styles";
 import { copyTextToClipboard } from "../../helpers/clipboard";
+import { DeviceWrapper } from "../DeviceWrapper";
+import { ResultBoxWeb } from "./ResultBox.web";
+import { ResultBoxMobile } from "./ResultBox.mobile";
 
 export interface ResultBoxProps {
+  url: string;
+  shortUrl: string;
+  isCopied: boolean;
+  onCopy: () => void;
+}
+
+interface _ResultBoxProps {
   url: string;
   shortCode: string;
 }
 
-export const ResultBox = ({ url, shortCode }: ResultBoxProps) => {
+const ExtendedDeviceWrapper = DeviceWrapper<ResultBoxProps>;
+
+export const ResultBox = ({ url, shortCode }: _ResultBoxProps) => {
   const [isCopied, setCopied] = useState<boolean>(false);
 
   const shortUrl = useMemo(
@@ -33,12 +39,13 @@ export const ResultBox = ({ url, shortCode }: ResultBoxProps) => {
   }, [shortUrl]);
 
   return (
-    <ResultBoxContainer>
-      <LongUrlText>{url}</LongUrlText>
-      <ShortUrlText>{shortUrl}</ShortUrlText>
-      <CopyButton onClick={handleOnCopy}>
-        {isCopied ? "Copied" : "Copy"}
-      </CopyButton>
-    </ResultBoxContainer>
+    <ExtendedDeviceWrapper
+      web={ResultBoxWeb}
+      mobile={ResultBoxMobile}
+      url={url}
+      shortUrl={shortUrl}
+      isCopied={isCopied}
+      onCopy={handleOnCopy}
+    />
   );
 };

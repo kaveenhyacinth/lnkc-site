@@ -1,22 +1,42 @@
-import styled from "styled-components";
-import { useCustomTheme } from "../theme/useTheme";
+import styled, { css } from "styled-components";
+import { device } from "../helpers/device";
+import { ITheme } from "../theme/model";
 
 interface LogoProps {
   size?: number;
+  spaceTop?: number;
+  spaceLeft?: number;
+  spaceBottom?: number;
+  spaceRight?: number;
 }
 
-const Text = styled.p<{ size: number; color: string }>`
-  font-family: "Montserrat";
-  font-size: ${(props) => props.size}px;
+const Text = styled.p<LogoProps>`
+  font-family: ${({ theme }) => (theme as ITheme).fonts.Montserrat};
+  font-size: ${(props) => props?.size ?? 24}px;
   font-weight: 800;
-  color: ${(props) => props.color};
+  color: ${({ theme }) => (theme as ITheme).colors.link};
+
+  ${(props) =>
+    css`
+      margin: ${props?.spaceTop ?? 0}px ${props?.spaceRight ?? 0}px
+        ${props?.spaceBottom ?? 0}px ${props?.spaceLeft ?? 0}px;
+    `}
+
+  @media ${device.tablet} {
+    text-align: center;
+    font-size: ${(props) => (props?.size ?? 24) + 12}px;
+    font-weight: 900;
+  }
+
+  span {
+    color: ${({ theme }) => (theme as ITheme).colors.primary};
+  }
 `;
 
-export const Logo = ({ size }: LogoProps) => {
-  const { colors } = useCustomTheme();
+export const Logo = (props: LogoProps) => {
   return (
-    <Text size={size ?? 24} color={colors.link}>
-      lnkc.
+    <Text {...props}>
+      lnkc<span>.</span>
     </Text>
   );
 };
