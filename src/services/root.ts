@@ -4,8 +4,6 @@ export const CacheTags = {
   Link: "Link",
 };
 
-console.log("baseURL", process.env.REACT_APP_API_BASE_URL)
-
 export const root = createApi({
   reducerPath: "rootReducer",
   baseQuery: fetchBaseQuery({
