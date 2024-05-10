@@ -16,7 +16,7 @@ export const linkApi = root.injectEndpoints({
       CreateLinkPayloadContract
     >({
       query: (payload) => ({
-        url: `/links/new`,
+        url: `/links`,
         method: "POST",
         body: payload,
       }),
